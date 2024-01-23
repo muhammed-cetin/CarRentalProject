@@ -5,26 +5,28 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "users")
-@Inheritance(strategy = InheritanceType.JOINED)
-public class User {
+@Table(name = "payments")
+public class Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
-    @Column(name = "email", unique = true)
-    private String email;
+    @Column(name = "total_price")
+    private double totalPrice;
 
-    @Column(name = "password")
-    private String password;
+    @Column(name = "payment_date")
+    private LocalDate paymetDate;
 
-    @Column(name = "role")
-    private String role;
-
+    @ManyToOne
+    @JoinColumn(name = "payment_id")
+    private Rental rental;
 }
+

@@ -1,41 +1,54 @@
 package com.cetin.carrentalproject.model;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@Table(name = "car")
+@Table(name = "cars")
 public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true,nullable = false)
-    private Long id;
+    @Column(name = "id")
+    private int id;
 
-    @Column(name = "registration_nr", nullable = false, length = 8)
-    private String registrationNr;
-
-    @Column(name = "brand", nullable = false)
-    private String brand;
-
-    @Column(name = "model", nullable = false)
+    @Column(name = "model")
     private String model;
 
-    @Column(name = "is_available", nullable = false)
-    private Boolean isAvailable;
+    @Column(name = "model_year")
+    private int modelYear;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name = "car_package_id", referencedColumnName = "id")
-    private CarPackage carPackage;
+    @Column(name = "kilometer")
+    private int kilometer;
 
-    @OneToOne(orphanRemoval = true)
-    private CarParameters carParameters;
+    @Column(name = "description")
+    private String description;
 
+    @Column(name = "daily_price")
+    private double dailyPrice;
+
+    @Column(name = "image_url")
+    private String imageUrl;
+
+    @ManyToOne
+    @JoinColumn(name = "brand_id")
+    private Brand brand;
+
+    @OneToMany(mappedBy = "car")
+    private List<Rental> rentals;
+
+    @ManyToOne
+    @JoinColumn(name = "fuelType_id")
+    private FuelType fuelType;
+
+    @OneToMany(mappedBy = "car")
+    private List<CarDamage> carDamages;
 }
