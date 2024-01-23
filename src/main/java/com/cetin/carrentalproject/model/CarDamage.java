@@ -22,6 +22,6 @@ public class CarDamage {
 
     @ManyToOne
     @JoinColumn(name = "car_id")
-    private CarDamage car;
+    private Car car;
 
 }
