@@ -60,8 +60,7 @@ public class RentalManager implements RentalService {
 
     @Override
     public boolean deleteRentalById(Integer rentalId) {
-        Rental rental = rentalRepository.findById(rentalId).get();
-        rentalRepository.delete(rental);
+        rentalRepository.deleteById(rentalId);
         return true;
     }
 

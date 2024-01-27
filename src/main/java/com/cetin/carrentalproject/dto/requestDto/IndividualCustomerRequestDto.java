@@ -6,9 +6,7 @@ import java.time.LocalDate;
 
 @Data
 public class IndividualCustomerRequestDto {
-    private int id;
-    private String email;
-    private String password;
+    private Integer id;
     private String nationalId;
     private String firstName;
     private String lastName;

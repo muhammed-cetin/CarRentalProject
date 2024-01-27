@@ -7,6 +7,7 @@ import com.cetin.carrentalproject.model.CarDamage;
 import com.cetin.carrentalproject.repository.CarDamageRepository;
 import com.cetin.carrentalproject.repository.CarRepository;
 import com.cetin.carrentalproject.service.abstracts.CarDamageService;
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,14 +16,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class CarDamageManager implements CarDamageService {
 
-    @Autowired
-    private CarDamageRepository carDamageRepository;
-    @Autowired
-    private CarRepository carRepository;
-    @Autowired
-    private ModelMapper modelMapper;
+
+    private final CarDamageRepository carDamageRepository;
+
+    private final CarRepository carRepository;
+
+    private final ModelMapper modelMapper;
 
     @Override
     public Integer saveCarDamage(CarDamageRequestDto carDamageRequestDto) {
